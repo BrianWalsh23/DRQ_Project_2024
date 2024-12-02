@@ -51,7 +51,7 @@ app.get('/api/games', async (req, res) => {
     res.send(game);
   });
 
-  app.delete('/api/game/:id', async (req, res) => {
+  app.delete('/api/games/:id', async (req, res) => {
   
     console.log('Deleting game with ID:', req.params.id);
     const game = await GameModel.findByIdAndDelete(req.params.id);

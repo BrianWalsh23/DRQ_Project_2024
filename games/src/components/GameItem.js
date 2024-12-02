@@ -16,7 +16,7 @@ import axios from "axios";
                     props.Reload(); // Refresh the movie list after deletion
                 })
                 .catch((error) => {
-                    console.error("Error deleting movie:", error);
+                    console.error("Error deleting game:", error);
                 });
         };
 
@@ -26,8 +26,8 @@ import axios from "axios";
                 <Card.Header>{props.myGame.title}</Card.Header>
                 <Card.Body>
                     <blockquote className="blockquote mb-0">
-                        <img src={props.myGame.poster}></img>
-                        <footer>{props.myGame.year}</footer>
+                      <p>Platform: {props.myGame.platform}</p>
+                      <p>Developer: {props.myGame.developer}</p>
                     </blockquote>
                 </Card.Body>
                 

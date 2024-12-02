@@ -6,7 +6,7 @@ function Games(props) {
 
   return (
     <>
-      {myGames.map((game) => (
+      {props.myGames.map((game) => (
         <GameItem
           myGame={game}
           key={game._id}
