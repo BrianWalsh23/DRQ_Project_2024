@@ -1,22 +1,20 @@
 import React from 'react';
+import GameItem from './GameItem';
 
-const Games = ({ games }) => {
+function Games(props) {
+  const myGames = props.myGames || []; // Default to an empty array if undefined
+
   return (
-    <div>
-      {games.map((game) => (
-        <div key={game.gameID} style={{ marginBottom: '20px' }}>
-          <img 
-            src={game.Poster} 
-            alt={game.Title} 
-            style={{ width: '150px', height: '225px' }} 
-          />
-          <h2>{game.Title} ({game.Year})</h2>
-          <p>Game ID: {game.gameID}</p>
-          <p>Type: {game.Type}</p>
-        </div>
+    <>
+      {myGames.map((game) => (
+        <GameItem
+          myGame={game}
+          key={game._id}
+          Reload={props.ReloadData}
+        />
       ))}
-    </div>
+    </>
   );
-};
+}
 
 export default Games;
