@@ -22,6 +22,10 @@ const Content = () => {
                 {games.map((game) => (
                     <div key={game._id}>
                         <h3>{game.title}</h3>
+                        <img src={game.image}
+                            alt={`${game.title} cover`}
+                            style={{width: '15%', height: 'auto', border: '1px solid #ccc', margin: '10px 0' }}
+                        ></img>
                         <p>Platform: {game.platform}</p>
                         <p>Developer: {game.developer}</p>
                         <p>Review SCore: {game.score}</p>

@@ -24,13 +24,19 @@ function Add() {
     e.preventDefault();
 
     // Final validation before submission
+    if (!platform) {
+      setError('Please select a valid platform.');
+      return;
+    }
+
+    // Final validation before submission
     if (score < 1 || score > 100) {
       setError('Score must be between 1 and 100.');
       return;
     }
 
     console.log(`Title: ${title}, Platform: ${platform}, Developer: ${developer}, Score: ${score}, Image(URL): ${image}`);
-   
+
     const game = {
       title,
       platform,
@@ -50,28 +56,32 @@ function Add() {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Add Game Title: </label>
-          <input 
+          <input
             type="text"
             className="form-control"
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
           <label>What Platform:(Xbox, PS5, PC): </label>
-          <input 
-            type="text"
+          <select
             className="form-control"
             value={platform}
             onChange={(e) => setPlatform(e.target.value)}
-          />
+          >
+            <option value="">Select Platform</option>
+            <option value="Xbox">Xbox</option>
+            <option value="PS5">PS5</option>
+            <option value="PC">PC</option>
+          </select>
           <label>Game Developer: </label>
-          <input 
+          <input
             type="text"
             className="form-control"
             value={developer}
             onChange={(e) => setDeveloper(e.target.value)}
           />
           <label>Review Score(1-100): </label>
-          <input 
+          <input
             type="number" // Use number input for score
             className="form-control"
             value={score}
