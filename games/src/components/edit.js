@@ -9,6 +9,7 @@ export default function Edit(props) {
   const [title, setTitle] = useState("");
   const [platform, setPlatform] = useState("");
   const [developer, setDeveloper] = useState("");
+  const [score, setScore] = useState("");
   const navigate = useNavigate();
 
 useEffect(() => {
@@ -17,6 +18,7 @@ useEffect(() => {
             setTitle(response.data.title);
             setPlatform(response.data.platform);
             setDeveloper(response.data.developer);
+            setScore(response.data.score);
         })
         .catch((error) => {
             console.log(error);
@@ -56,6 +58,13 @@ return (
                 className="form-control" 
                 value={developer} 
                 onChange={(e) => setDeveloper(e.target.value)} />
+            </div>
+            <div className="form-group">
+                <label>Review Score(1-100): </label>
+                <input type="text" 
+                className="form-control" 
+                value={score} 
+                onChange={(e) => setScore(e.target.value)} />
             </div>
             <div className="form-group">
                 <input type="submit" value="Edit Game" className="btn btn-primary" />

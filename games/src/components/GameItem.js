@@ -28,6 +28,7 @@ import axios from "axios";
                     <blockquote className="blockquote mb-0">
                       <p>Platform: {props.myGame.platform}</p>
                       <p>Developer: {props.myGame.developer}</p>
+                      <p>Score: {props.myGame.score}</p>
                     </blockquote>
                 </Card.Body>
                 

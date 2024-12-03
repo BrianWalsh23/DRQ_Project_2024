@@ -24,6 +24,7 @@ const Content = () => {
                         <h3>{game.title}</h3>
                         <p>Platform: {game.platform}</p>
                         <p>Developer: {game.developer}</p>
+                        <p>Review SCore: {game.score}</p>
                     </div>
                 ))}
             </div>
