@@ -14,11 +14,15 @@ const Content = () => {
             });
     }, []);
 
+    // Filter through my games array to find the correct platforms
+    /* https://www.w3schools.com/jsref/jsref_filter.asp */
     const xboxGames = games.filter((game) => game.platform === 'Xbox');
     const ps5Games = games.filter((game) => game.platform === 'PS5');
     const pcGames = games.filter((game) => game.platform === 'PC');
 
-    const highestRatedGame = games.length > 0 ? 
+    // Get the game with the highest score
+    /* Get the highest rated game by comparing scores */
+    const highestRatedGame = games.length > 0 ?
         games.reduce((maxGame, game) =>
             (game.score > maxGame.score ? game : maxGame), games[0]) : null;
 
@@ -49,7 +53,7 @@ const Content = () => {
         marginBottom: '15px',
         borderRadius: '5px',
     };
-    
+
 
     // Adding background image style
     const containerStyle = {
@@ -62,6 +66,7 @@ const Content = () => {
     };
 
     const sectionTitleStyle = {
+        fontFamily: 'Nosifer',
         fontSize: '1.5em',
         marginBottom: '20px',
         fontWeight: 'bold',
@@ -71,22 +76,25 @@ const Content = () => {
         backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional background for better contrast
         padding: '10px', // Padding around text for better spacing
         borderRadius: '5px', // Optional rounded corners for the background
+        
     };
 
     return (
         <div style={containerStyle}>
-            <h1 style={{ textAlign: 'center', color: '#222', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: '#fff', }}>Game Library</h1>
+            <h1 style={{ textAlign: 'center', color: '#222', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: '#fff', fontFamily: 'Nosifer',}}>Game Library</h1>
 
             <section style={sectionStyle}>
                 <h2 style={sectionTitleStyle}>Xbox Games</h2>
                 <div style={flexContainerStyle}>
                     {xboxGames.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3>{game.title}</h3>
+                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p>Platform: {game.platform}</p>
-                            <p>Developer: {game.developer}</p>
-                            <p>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -97,11 +105,13 @@ const Content = () => {
                 <div style={flexContainerStyle}>
                     {ps5Games.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3>{game.title}</h3>
+                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p>Platform: {game.platform}</p>
-                            <p>Developer: {game.developer}</p>
-                            <p>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -112,11 +122,13 @@ const Content = () => {
                 <div style={flexContainerStyle}>
                     {pcGames.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3>{game.title}</h3>
+                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p>Platform: {game.platform}</p>
-                            <p>Developer: {game.developer}</p>
-                            <p>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -126,15 +138,17 @@ const Content = () => {
                 <h2 style={sectionTitleStyle}>Highest Rated Game</h2>
                 {highestRatedGame ? (
                     <div style={gameCardStyle}>
-                        <h3>{highestRatedGame.title}</h3>
+                        <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{highestRatedGame.title}</h3>
                         <img
                             src={highestRatedGame.image}
                             alt={`${highestRatedGame.title} cover`}
                             style={imgStyle}
                         />
-                        <p>Platform: {highestRatedGame.platform}</p>
-                        <p>Developer: {highestRatedGame.developer}</p>
-                        <p>Review Score: {highestRatedGame.score}</p>
+                        <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {highestRatedGame.platform}</p>
+                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div>
+                        <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {highestRatedGame.developer}</p>
+                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div>
+                        <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {highestRatedGame.score}</p>
                     </div>
                 ) : (
                     <p>No games available to display.</p>
