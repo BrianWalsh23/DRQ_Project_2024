@@ -25,6 +25,7 @@ const gameSchema = new mongoose.Schema({
     platform: String,  // e.g., Xbox, PS5, PC
     developer: String,  // e.g., Naughty Dog, Rockstar Games
     score: Number,
+    image: String
   });
   
   // Create a model based on the schema
@@ -63,9 +64,9 @@ app.get('/api/games', async (req, res) => {
   
 app.post('/api/games', async (req, res) => {
     console.log('Received POST request:', req.body);
-    const { title, platform, developer, score } = req.body;
+    const { title, platform, developer, score, image } = req.body;
   
-    const newGame = new GameModel({ title, platform, developer, score });
+    const newGame = new GameModel({ title, platform, developer, score, image });
     await newGame.save();
 
     res.status(201).json({ message: 'Game record created successfully', game: newGame });

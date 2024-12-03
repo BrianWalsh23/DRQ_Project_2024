@@ -26,9 +26,10 @@ import axios from "axios";
                 <Card.Header>{props.myGame.title}</Card.Header>
                 <Card.Body>
                     <blockquote className="blockquote mb-0">
+                      <img src={props.myGame.image}></img>
                       <p>Platform: {props.myGame.platform}</p>
                       <p>Developer: {props.myGame.developer}</p>
-                      <p>Score: {props.myGame.score}</p>
+                      <p>Score(1-100): {props.myGame.score}</p>
                     </blockquote>
                 </Card.Body>
                 

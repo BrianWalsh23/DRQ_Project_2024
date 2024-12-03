@@ -8,6 +8,7 @@ export default function Edit(props) {
   const [platform, setPlatform] = useState("");
   const [developer, setDeveloper] = useState("");
   const [score, setScore] = useState("");
+  const [image, setImage] = useState("");
   const [error, setError] = useState(""); // State for error messages
   const navigate = useNavigate();
 
@@ -18,6 +19,7 @@ export default function Edit(props) {
         setPlatform(response.data.platform);
         setDeveloper(response.data.developer);
         setScore(response.data.score);
+        setImage(response.data.image);
       })
       .catch((error) => {
         console.log(error);
@@ -39,7 +41,7 @@ export default function Edit(props) {
     event.preventDefault();
 
     // Final validation before submission
-    if (score < 1 || score > 100) {
+    if (score < 0 || score > 100) {
       setError('Score must be between 1 and 100.');
       return;
     }
@@ -86,7 +88,7 @@ export default function Edit(props) {
           />
         </div>
         <div className="form-group">
-          <label>Review Score (1-100): </label>
+          <label>Review Score (0-100): </label>
           <input 
             type="number" 
             className="form-control" 
@@ -95,6 +97,13 @@ export default function Edit(props) {
           />
           {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error */}
         </div>
+        <div className="form-group">
+            <label>Image(URL): </label>
+            <input type="text" 
+            className="form-control" 
+            value={image} 
+            onChange={(e) => setImage(e.target.value)} />
+            </div>
         <div className="form-group">
           <input 
             type="submit" 

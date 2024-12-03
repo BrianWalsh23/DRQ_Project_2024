@@ -6,6 +6,7 @@ function Add() {
   const [platform, setPlatform] = useState('');
   const [developer, setDeveloper] = useState('');
   const [score, setScore] = useState('');
+  const [image, setImage] = useState('');
   const [error, setError] = useState(''); // State for error messages
 
   const handleScoreChange = (e) => {
@@ -28,13 +29,14 @@ function Add() {
       return;
     }
 
-    console.log(`Title: ${title}, Platform: ${platform}, Developer: ${developer}, Score: ${score}`);
+    console.log(`Title: ${title}, Platform: ${platform}, Developer: ${developer}, Score: ${score}, Image(URL): ${image}`);
    
     const game = {
       title,
       platform,
       developer,
-      score
+      score,
+      image
     };
 
     axios.post('http://localhost:4000/api/games', game)
@@ -54,7 +56,7 @@ function Add() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
-          <label>What Platform?(Xbox, PS5, PC): </label>
+          <label>What Platform:(Xbox, PS5, PC): </label>
           <input 
             type="text"
             className="form-control"
@@ -74,6 +76,12 @@ function Add() {
             className="form-control"
             value={score}
             onChange={handleScoreChange}
+          />
+          <label>Game Image: </label>
+          <input type="text"
+            className="form-control"
+            value={image}
+            onChange={(e) => { setImage(e.target.value) }}
           />
           {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error */}
         </div>
