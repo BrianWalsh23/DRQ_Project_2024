@@ -62,6 +62,7 @@ function Add() {
             value={title}
             onChange={(e) => setTitle(e.target.value)}
           />
+          {/* https://www.geeksforgeeks.org/how-to-get-selected-value-in-dropdown-list-using-javascript/ */}
           <label>What Platform:(Xbox, PS5, PC): </label>
           <select
             className="form-control"
