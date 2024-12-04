@@ -1,5 +1,6 @@
 import { useState } from "react";
 import axios from 'axios';
+import { useNavigate } from "react-router-dom";
 
 function Add() {
   const [title, setTitle] = useState('');
@@ -8,6 +9,8 @@ function Add() {
   const [score, setScore] = useState('');
   const [image, setImage] = useState('');
   const [error, setError] = useState(''); // State for error messages
+
+  const navigate = useNavigate();
 
   const handleScoreChange = (e) => {
     const value = e.target.value;
@@ -46,7 +49,10 @@ function Add() {
     };
 
     axios.post('http://localhost:4000/api/games', game)
-      .then((res) => console.log(res.data))
+      .then((res) => {
+        console.log(res.data);
+        navigate('/'); // Send to homepage after submit
+      })
       .catch((err) => console.log(err.data));
   };
   const containerStyle = {
