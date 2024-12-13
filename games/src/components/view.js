@@ -3,8 +3,12 @@ import axios from "axios";
 import Games from "./Games";
 
 function View() {
+  // data stores list of games retrieved from the backend
+  // setData is used to update with new game data
   const [data, setData] = useState([]);
 
+  // axios sends get request to my db
+  // list of games is set in data
   const Reload = () => {
     console.log("Reloading game data...");
     axios.get('http://localhost:4000/api/games')
@@ -21,14 +25,14 @@ function View() {
   }, []);
 
   const centerStyle = {
-    textAlign: 'center', // Centers text horizontally
+    textAlign: 'center',
     display: 'flex',
     flexDirection: 'column',
-    alignItems: 'center', // Centers items horizontally
-    justifyContent: 'center', // Centers items vertically
-    minHeight: '100vh', // Ensures full-page centering
+    alignItems: 'center',
+    justifyContent: 'center',
+    minHeight: '100vh',
     backgroundImage: 'url("https://www.pcworld.com/wp-content/uploads/2024/05/steam-game-library.jpg?quality=50&strip=all")',
-    
+
   };
 
   return (

@@ -3,15 +3,18 @@ import { useParams, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 
 export default function Edit(props) {
+  // useState hook manages the values entered
   let { id } = useParams();
   const [title, setTitle] = useState("");
   const [platform, setPlatform] = useState("");
   const [developer, setDeveloper] = useState("");
   const [score, setScore] = useState("");
   const [image, setImage] = useState("");
-  const [error, setError] = useState(""); // State for error messages
+  const [error, setError] = useState("");
   const navigate = useNavigate();
 
+  // axios sends the get request to my db and finds it by ID
+  // .then fills all set fields to be updated later
   useEffect(() => {
     axios.get('http://localhost:4000/api/game/' + id)
       .then((response) => {
@@ -31,7 +34,7 @@ export default function Edit(props) {
     // Allow only numeric input and values between 1 and 100
     if (!isNaN(value) && value >= 1 && value <= 100) {
       setScore(value);
-      setError(''); // Clear error if valid
+      setError('');
     } else {
       setError('Score must be a number between 1 and 100.');
     }
@@ -46,6 +49,7 @@ export default function Edit(props) {
       return;
     }
 
+    // axios.put sends the new updated data to my db
     const updatedGame = { id, title, platform, developer, score };
     axios.put('http://localhost:4000/api/game/' + id, updatedGame)
       .then((res) => {
@@ -62,53 +66,53 @@ export default function Edit(props) {
       <form onSubmit={handleSubmit}>
         <div className="form-group">
           <label>Title of game: </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            value={title} 
-            onChange={(e) => setTitle(e.target.value)} 
+          <input
+            type="text"
+            className="form-control"
+            value={title}
+            onChange={(e) => setTitle(e.target.value)}
           />
         </div>
         <div className="form-group">
           <label>Platform: </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            value={platform} 
-            onChange={(e) => setPlatform(e.target.value)} 
+          <input
+            type="text"
+            className="form-control"
+            value={platform}
+            onChange={(e) => setPlatform(e.target.value)}
           />
         </div>
         <div className="form-group">
           <label>Developer: </label>
-          <input 
-            type="text" 
-            className="form-control" 
-            value={developer} 
-            onChange={(e) => setDeveloper(e.target.value)} 
+          <input
+            type="text"
+            className="form-control"
+            value={developer}
+            onChange={(e) => setDeveloper(e.target.value)}
           />
         </div>
         <div className="form-group">
           <label>Review Score (0-100): </label>
-          <input 
-            type="number" 
-            className="form-control" 
-            value={score} 
-            onChange={handleScoreChange} 
+          <input
+            type="number"
+            className="form-control"
+            value={score}
+            onChange={handleScoreChange}
           />
-          {error && <p style={{ color: 'red' }}>{error}</p>} {/* Display error */}
+          {error && <p style={{ color: 'red' }}>{error}</p>}
         </div>
         <div className="form-group">
-            <label>Image(URL): </label>
-            <input type="text" 
-            className="form-control" 
-            value={image} 
+          <label>Image(URL): </label>
+          <input type="text"
+            className="form-control"
+            value={image}
             onChange={(e) => setImage(e.target.value)} />
-            </div>
+        </div>
         <div className="form-group">
-          <input 
-            type="submit" 
-            value="Edit Game" 
-            className="btn btn-primary" 
+          <input
+            type="submit"
+            value="Edit Game"
+            className="btn btn-primary"
           />
         </div>
       </form>

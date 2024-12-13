@@ -2,8 +2,10 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 const Content = () => {
+    // games will store my list and setGames with update games
     const [games, setGames] = useState([]);
 
+    // Axios sends request to my db /games
     useEffect(() => {
         axios.get('http://localhost:4000/api/games')
             .then((response) => {
@@ -21,7 +23,7 @@ const Content = () => {
     const pcGames = games.filter((game) => game.platform === 'PC');
 
     // Get the game with the highest score
-    /* Get the highest rated game by comparing scores */
+    // Check that games array is not empty first
     const highestRatedGame = games.length > 0 ?
         games.reduce((maxGame, game) =>
             (game.score > maxGame.score ? game : maxGame), games[0]) : null;
@@ -59,10 +61,10 @@ const Content = () => {
     const containerStyle = {
         fontFamily: 'Arial, sans-serif',
         padding: '20px',
-        backgroundImage: 'url("https://www.pcworld.com/wp-content/uploads/2024/05/steam-game-library.jpg?quality=50&strip=all")', // Replace with your image URL
+        backgroundImage: 'url("https://www.pcworld.com/wp-content/uploads/2024/05/steam-game-library.jpg?quality=50&strip=all")',
         backgroundSize: 'cover',
         backgroundPosition: 'center',
-        backgroundAttachment: 'fixed', // Optional, for parallax effect
+        backgroundAttachment: 'fixed',
     };
 
     const sectionTitleStyle = {
@@ -71,30 +73,31 @@ const Content = () => {
         marginBottom: '20px',
         fontWeight: 'bold',
         textTransform: 'uppercase',
-        color: '#fff', // White text for contrast
+        color: '#fff',
         textShadow: '2px 2px 4px rgba(0, 0, 0, 0.7)', // Adding text shadow for better readability
-        backgroundColor: 'rgba(0, 0, 0, 0.5)', // Optional background for better contrast
-        padding: '10px', // Padding around text for better spacing
-        borderRadius: '5px', // Optional rounded corners for the background
-        
+        backgroundColor: 'rgba(0, 0, 0, 0.5)',
+        padding: '10px',
+        borderRadius: '5px',
+
     };
 
     return (
         <div style={containerStyle}>
-            <h1 style={{ textAlign: 'center', color: '#222', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: '#fff', fontFamily: 'Nosifer',}}>Game Library</h1>
+            <h1 style={{ textAlign: 'center', color: '#222', backgroundColor: 'rgba(0, 0, 0, 0.5)', color: '#fff', fontFamily: 'Nosifer', }}>Game Library</h1>
 
             <section style={sectionStyle}>
                 <h2 style={sectionTitleStyle}>Xbox Games</h2>
                 <div style={flexContainerStyle}>
+                    {/* Map function loops through xboxGames array */}
                     {xboxGames.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
+                            <h3 style={{ fontFamily: 'Rubik Dirt, cursive', }}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt' }}>Platform: {game.platform}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt' }}>Developer: {game.developer}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt' }}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -105,13 +108,13 @@ const Content = () => {
                 <div style={flexContainerStyle}>
                     {ps5Games.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
+                            <h3 style={{ fontFamily: 'Rubik Dirt, cursive', }}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt' }}>Platform: {game.platform}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt' }}>Developer: {game.developer}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt' }}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -122,13 +125,13 @@ const Content = () => {
                 <div style={flexContainerStyle}>
                     {pcGames.map((game) => (
                         <div key={game._id} style={gameCardStyle}>
-                            <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{game.title}</h3>
+                            <h3 style={{ fontFamily: 'Rubik Dirt, cursive', }}>{game.title}</h3>
                             <img src={game.image} alt={`${game.title} cover`} style={imgStyle} />
-                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {game.platform}</p>
+                            <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt' }}>Platform: {game.platform}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {game.developer}</p>
+                            <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt' }}>Developer: {game.developer}</p>
                             <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
-                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {game.score}</p>
+                            <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt' }}>Review Score: {game.score}</p>
                         </div>
                     ))}
                 </div>
@@ -138,17 +141,17 @@ const Content = () => {
                 <h2 style={sectionTitleStyle}>Highest Rated Game</h2>
                 {highestRatedGame ? (
                     <div style={gameCardStyle}>
-                        <h3 style={{fontFamily: 'Rubik Dirt, cursive',}}>{highestRatedGame.title}</h3>
+                        <h3 style={{ fontFamily: 'Rubik Dirt, cursive', }}>{highestRatedGame.title}</h3>
                         <img
                             src={highestRatedGame.image}
                             alt={`${highestRatedGame.title} cover`}
                             style={imgStyle}
                         />
-                        <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt'}}>Platform: {highestRatedGame.platform}</p>
-                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div>
-                        <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt'}}>Developer: {highestRatedGame.developer}</p>
-                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div>
-                        <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt'}}>Review Score: {highestRatedGame.score}</p>
+                        <p style={{ backgroundColor: '#d3f8e2', fontFamily: 'Rubik Dirt' }}>Platform: {highestRatedGame.platform}</p>
+                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                        <p style={{ backgroundColor: '#f7e6ff', fontFamily: 'Rubik Dirt' }}>Developer: {highestRatedGame.developer}</p>
+                        <div style={{ borderBottom: '1px solid #ccc', margin: '10px 0' }}></div> {/* Divider */}
+                        <p style={{ backgroundColor: '#ffebcc', fontFamily: 'Rubik Dirt' }}>Review Score: {highestRatedGame.score}</p>
                     </div>
                 ) : (
                     <p>No games available to display.</p>
